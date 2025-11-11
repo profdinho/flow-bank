@@ -4,10 +4,12 @@
  */
 package telas;
 
+import dados.UsuarioDAO;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 /**
  *
  * @author dinho
@@ -183,7 +185,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         String senha = String.valueOf(txtSenha.getPassword());
         String confirme = String.valueOf(txtConfirme.getPassword());
         String formato = "dd/MM/yyyy";
-        Date dataNascimento;
+        Date dataNascimento = null;
         try{
             SimpleDateFormat sdf = new
                 SimpleDateFormat(formato);
@@ -202,6 +204,19 @@ public class TelaCadastro extends javax.swing.JFrame {
             if (nome.equals("") || email.equals("") || senha.equals("")){
                 JOptionPane.showMessageDialog(null,
                         "Favor preencher os campos");
+            }
+            else {
+                Usuario novoUsuario = new Usuario();
+                novoUsuario.setNome(nome);
+                novoUsuario.setEmail(email);
+                novoUsuario.setCelular(celular);
+                novoUsuario.setNascimento(dataNascimento);
+                novoUsuario.setSenha(senha);
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                usuarioDAO.adicionaUsuario(novoUsuario); 
+                JOptionPane.showMessageDialog(null,
+                            "Usuário adicionado com sucesso!");
+                this.dispose();
             }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed

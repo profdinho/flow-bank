@@ -4,6 +4,7 @@
  */
 package telas;
 
+import dados.UsuarioDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -108,7 +109,8 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = txtUsuario.getText();
         String senha = String.valueOf(txtSenha.getPassword());
-        if (usuario.equals("admin") && senha.equals("123456")) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        if (usuarioDAO.logarUsuario(usuario, senha)) {
             JOptionPane.showMessageDialog(null, "Login correto!");
         }
         else {
