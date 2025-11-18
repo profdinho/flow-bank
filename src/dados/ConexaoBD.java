@@ -18,6 +18,13 @@ public class ConexaoBD {
     private static String PASSWORD = "123456";
     private static String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static String URL = "jdbc:mysql://localhost:3306/flowbank";
+    /*
+    Se for utilizar o PostgreSQL no Supabase, descomente o código abaixo e comente o código acima
+    private static String USERNAME = "YOUR_USER";
+    private static String PASSWORD = "YOUR_PASSWORD";
+    private static String DRIVER = "org.postgresql.Driver";
+    private static String URL = "jdbc:postgresql://URL_SUPABASE:5432/postgres?sslmode=require";
+    */
     public Connection getConnection(){
         try {
             Class.forName(DRIVER);
