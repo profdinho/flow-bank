@@ -125,4 +125,19 @@ public class UsuarioDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void deletarUsuario(int id) {
+        String sql = "DELETE FROM Usuario WHERE id = ?";
+        try {
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+        }
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro ao deletar usuário!");
+            throw new RuntimeException(e);
+        }
+    }
 }

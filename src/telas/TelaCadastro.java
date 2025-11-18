@@ -107,6 +107,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -263,6 +268,20 @@ public class TelaCadastro extends javax.swing.JFrame {
             btnCadastrar.setText("Alterar");
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        int resposta = JOptionPane.showConfirmDialog(this,
+                    "Tem certeza que deseja excluir o usuário?");
+        if (resposta == JOptionPane.YES_OPTION) {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.deletarUsuario(this.id);
+            JOptionPane.showMessageDialog(this, "Usuário excluído com sucesso!");
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
