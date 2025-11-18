@@ -5,6 +5,12 @@
         <group>
             <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/telas/TelaLogin.java</file>
             <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/telas/TelaCadastro.java</file>
+            <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/modelo/Usuario.java</file>
+            <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/dados/ConexaoBD.java</file>
+            <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/dados/UsuarioDAO.java</file>
+            <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/telas/TelaExtrato.java</file>
+            <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/modelo/Extrato.java</file>
+            <file>file:/C:/Users/dinho/OneDrive/Documentos/NetBeansProjects/FlowBank/src/dados/ExtratoDAO.java</file>
         </group>
     </open-files>
 </project-private>

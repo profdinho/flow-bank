@@ -6,6 +6,7 @@ package telas;
 
 import dados.UsuarioDAO;
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 
 /**
  *
@@ -111,7 +112,11 @@ public class TelaLogin extends javax.swing.JFrame {
         String senha = String.valueOf(txtSenha.getPassword());
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         if (usuarioDAO.logarUsuario(usuario, senha)) {
-            JOptionPane.showMessageDialog(null, "Login correto!");
+            //JOptionPane.showMessageDialog(null, "Login correto!");
+            Usuario usuarioLogado = usuarioDAO.buscarUsuario(usuario);
+            TelaExtrato telaExtrato = new TelaExtrato(usuarioLogado.getId());
+            telaExtrato.setVisible(true);
+            this.dispose();
         }
         else {
             JOptionPane.showMessageDialog(null, "Login incorreto!");

@@ -15,12 +15,19 @@ import modelo.Usuario;
  * @author dinho
  */
 public class TelaCadastro extends javax.swing.JFrame {
+    
+    private int id = 0;
 
     /**
      * Creates new form TelaCadastro
      */
     public TelaCadastro() {
         initComponents();
+    }
+    
+    public TelaCadastro(int id) {
+        initComponents();
+        this.id = id;
     }
 
     /**
@@ -51,6 +58,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         lblId.setText("ID:");
 
@@ -213,13 +225,44 @@ public class TelaCadastro extends javax.swing.JFrame {
                 novoUsuario.setNascimento(dataNascimento);
                 novoUsuario.setSenha(senha);
                 UsuarioDAO usuarioDAO = new UsuarioDAO();
-                usuarioDAO.adicionaUsuario(novoUsuario); 
+                if (this.id != 0) {
+                    novoUsuario.setId(this.id);
+                    usuarioDAO.atualizarUsuario(novoUsuario);
+                JOptionPane.showMessageDialog(null,
+                            "Usuário atualizado com sucesso!");
+                TelaExtrato telaExtrato = new TelaExtrato(this.id);
+                telaExtrato.setVisible(true);
+                }
+                else {
+                    usuarioDAO.adicionaUsuario(novoUsuario); 
                 JOptionPane.showMessageDialog(null,
                             "Usuário adicionado com sucesso!");
+                TelaLogin telaLogin = new TelaLogin();
+                telaLogin.setVisible(true);
+                }
                 this.dispose();
             }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        if (this.id != 0) {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Usuario usuario = usuarioDAO.buscarUsuario(this.id);
+            String formato = "dd/MM/yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String dataNascimento = sdf.format(usuario.getNascimento());
+            txtId.setText(String.valueOf(usuario.getId()));
+            txtNome.setText(usuario.getNome());
+            txtEmail.setText(usuario.getEmail());
+            txtCelular.setText(usuario.getCelular());
+            txtNascimento.setText(dataNascimento);
+            txtSenha.setText(usuario.getSenha());
+            txtConfirme.setText(usuario.getSenha());
+            btnCadastrar.setText("Alterar");
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
